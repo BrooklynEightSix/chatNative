@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, AppRegistry, TextInput } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 
 export default class UselessTextInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = { text: 'TESTINGS' };
   }
 
   render() {

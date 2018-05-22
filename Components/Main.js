@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import NewMessageEntry from './Components/NewMessageEntry'
-import Corgi from './Components'
+import NewMessageEntry from './NewMessageEntry'
 
 export default class App extends React.Component {
   render() {
     return (
-      <Corgi />
+      <View style={styles.container}>
+        <Text>Enter your message below</Text>
+        <NewMessageEntry />
+      </View>
     );
   }
 }
