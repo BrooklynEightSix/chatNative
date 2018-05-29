@@ -7,11 +7,19 @@ const initialState = {
 
 /*Action Type */
 const GOT_MESSAGE_FROM_SERVER = 'GOT_MESSAGE_FROM_SERVER'
+const WRITE_MESSAGE = 'WRITE_MESSAGE'
 
 /*Action Creator */
 export const gotMessageFromServer = message => {
   return {
     type: GOT_MESSAGE_FROM_SERVER,
+    message
+  }
+}
+
+export const writeMessage = message =>{
+  return {
+    type:WRITE_MESSAGE,
     message
   }
 }
@@ -24,8 +32,10 @@ export const gotMessages = () =>
 /*Reducer */
 export default reducer = (state = initialState, action) => {
   switch(action.type){
-    case gotMessageFromServer:
-      return {...state, messages:[ ...state.messages, action.message] }
+    case GOT_MESSAGE_FROM_SERVER:
+      return {...state, messages:state.messages }
+    case WRITE_MESSAGE:
+    return {...state, messages:[...state.messages, action.message]}
     default:
       return state 
   }

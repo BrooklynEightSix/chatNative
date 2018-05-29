@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { StyleSheet, TextInput, Button, View } from 'react-native';
+import {writeMessage, gotMessages} from '../store'
 
-export default class UselessTextInput extends Component {
+class UselessTextInput extends Component {
   constructor(props) {
     super(props);
     this.state = { text: '' };
@@ -9,10 +11,12 @@ export default class UselessTextInput extends Component {
   }
 
   handleSubmit(){
-    if(this.state.text !== '') console.log(this.state.text, '  message submitted')
+    if(this.state.text !== '') //console.log(this.state.text, '  message submitted')
+    this.props.sendMessage(this.state.text)
   }
   render() {
     return (
+
       <View>
         <TextInput
           style={styles.container}
@@ -28,6 +32,16 @@ export default class UselessTextInput extends Component {
   }
 }
 
+const mapDispatch = (dispatch)=>{
+  return {
+    sendMessage(text){
+      dispatch(writeMessage(text))
+      dispatch(gotMessages())
+    }
+  }
+}
+
+export default connect(null, mapDispatch)(UselessTextInput)
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'gray',

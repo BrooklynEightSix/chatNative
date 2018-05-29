@@ -16,7 +16,8 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.messages.map(message => <Messages message={message} key={this.props.messages.indexOf(message)}/>)}
+        {this.props.messages.map((message,index) => <Messages message={message} key={index}/>)}
+        <Text>{'\n'}</Text>
         <Text>Enter your message below</Text>
         <NewMessageEntry />
       </View>
