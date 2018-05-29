@@ -1,4 +1,4 @@
-import {  combineReducer, applyMiddleware } from 'redux'
+import {  combineReducer } from 'redux'
 
 const initialState = {
   messages: ['testing', 'hi'],
@@ -9,12 +9,18 @@ const initialState = {
 const GOT_MESSAGE_FROM_SERVER = 'GOT_MESSAGE_FROM_SERVER'
 
 /*Action Creator */
-export const gotMessageFromServer = message=>{
+export const gotMessageFromServer = message => {
   return {
     type: GOT_MESSAGE_FROM_SERVER,
     message
   }
 }
+
+/* Thunk */
+export const gotMessages = () => 
+  dispatch => 
+    dispatch(gotMessageFromServer(initialState.messages))
+
 /*Reducer */
 export default reducer = (state = initialState, action) => {
   switch(action.type){

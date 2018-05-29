@@ -1,12 +1,14 @@
 import React from 'react'
 import { Provider } from 'react-redux'
+import thunkMiddleware from 'redux-thunk'
 
-import {createStore} from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import Main from './Main'
 
 import reducer from '../store'
 
-const store = createStore(reducer)
+const middleware = applyMiddleware(thunkMiddleware)
+const store = createStore(reducer, middleware)
 
 const Corgi = () => (
   <Provider store={store}>

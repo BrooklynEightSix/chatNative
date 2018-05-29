@@ -1,17 +1,44 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import NewMessageEntry from './NewMessageEntry'
+import { gotMessages } from '../store'
+import { connect } from 'react-redux';
+import Messages from './Messages'
 
-export default class App extends React.Component {
+
+class App extends React.Component {
+
+  componentDidMount(){
+    this.props.loadInitialData()
+    console.log(this.props.messages)
+  }
+
   render() {
     return (
       <View style={styles.container}>
+        {this.props.messages.map(message => <Messages message={message} key={this.props.messages.indexOf(message)}/>)}
         <Text>Enter your message below</Text>
         <NewMessageEntry />
       </View>
     );
   }
 }
+
+const mapDispatch = (dispatch) => {
+  return{
+    loadInitialData(){
+     dispatch(gotMessages())
+    }
+  }
+}
+
+const mapState = (state) => {
+  return {
+    messages: state.messages
+  }
+}
+
+export default connect(mapState, mapDispatch)(App)
 
 const styles = StyleSheet.create({
   container: {
