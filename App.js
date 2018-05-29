@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import NewMessageEntry from './Components/NewMessageEntry'
-import Corgi from './Components'
+import NewMessageEntry from './client/Components/NewMessageEntry'
+import Corgi from './client/Components'
 
 export default class App extends React.Component {
   render() {
